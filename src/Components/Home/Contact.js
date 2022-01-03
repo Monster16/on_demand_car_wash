@@ -1,6 +1,7 @@
+import { Card, CardContent } from "@mui/material";
 import React from "react";
 import "./Contact.css";
-import { Card, CardContent } from "@material-ui/core/index";
+
 
 function Contact() {
   return (

@@ -5,9 +5,11 @@
     padding: 20px;
     z-index: 1;
     justify-content: space-between;
+    margin-bottom: 20px;
     width: 100%;
     height: 80px;
     background-color: white;
+    
     /* For Animations */
     /* transition: all 0.5s; */
   }
@@ -69,16 +71,16 @@
   }
   
   .nav__scroll {
-    background-color: #6fc727;
+    background-color: black;
   }
   
   .nav__container .nav__linkscroll {
     color: white;
-    background-color: #6fc727;
+    background-color: black;
   }
   
   .nav__containerscroll {
-    background-color: #6fc727;
+    background-color: black;
   }
   
   .nav__borderXwidthscroll a:before,

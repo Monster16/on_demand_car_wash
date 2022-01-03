@@ -1,6 +1,6 @@
 import React from "react";
 import "./WhyUs.css";
-import CheckIcon from "@material-ui/icons/Check";
+import CheckIcon from '@mui/icons-material/Check';
 import banner_2 from "../../assets/images/banner_2.png";
 import banner_3 from "../../assets/images/banner_3.jpg";
 import banner_4 from "../../assets/images/banner_4.png";

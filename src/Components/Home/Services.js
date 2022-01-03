@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
 import "./Services.css";
+import ContServices from "./ContServices";
+import SideServices from "./SideServices";
 
 function Services() {
-    return (
-        <div>
-           <h1>Comingggggggggggggggg Sooooooooon!!!!!!!!!!!!!</h1>
-        </div>
-    )
+  return (
+    <>
+    <div className="row">
+    <ContServices/>
+    <SideServices/>
+    </div>
+    </>
+  );
 }
 
-export default Services
+export default Services;

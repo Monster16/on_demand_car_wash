@@ -45,7 +45,7 @@ function MiniDrawer() {
         {
             text: "LOGOUT",
             icon: <LogoutIcon />,
-            path: '/washer_login'
+            path: '/'
             
         },
     ];

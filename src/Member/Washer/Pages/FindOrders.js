@@ -1,6 +1,6 @@
 import { Card, Table } from 'react-bootstrap'
 import React from 'react'
-import "../Pages/Washer.css"
+import "./Washer.css"
 
 
 function FindOrders() {
@@ -27,7 +27,7 @@ function FindOrders() {
                     </thead>
                     <tbody>
                         <tr align="center">
-                            <td colSpan={8}>No orders Available</td>
+                            <td colSpan={8}>No orders for you</td>
                             
                         </tr>
                        

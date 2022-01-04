@@ -16,7 +16,8 @@ import LocalCarWashIcon from '@mui/icons-material/LocalCarWash';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import EngineeringIcon from '@mui/icons-material/Engineering';
-import {   Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
 
 
 const drawerWidth = 240;
@@ -30,18 +31,18 @@ function MiniDrawer(props) {
             path: '/admin_home'
            
         },
-        {
-            text: "CARS",
-            icon: <TimeToLeaveIcon />,
-            path: '/admin_home/cars'
+        // {
+        //     text: "CARS",
+        //     icon: <TimeToLeaveIcon />,
+        //     path: '/admin_home/cars'
             
-        },
-        {
-            text: "SERVICES",
-            icon: <LocalCarWashIcon />,
-             path: '/admin_home/services'
+        // },
+        // {
+        //     text: "SERVICES",
+        //     icon: <LocalCarWashIcon />,
+        //      path: '/admin_home/services'
            
-        },
+        // },
         {
             text: "WASHERS",
             icon: <EngineeringIcon />,
@@ -50,14 +51,20 @@ function MiniDrawer(props) {
         },
         {
             text: "ORDERS",
-            icon: <BookmarkAddedIcon />,
+            icon: <BookmarkAddIcon />,
              path: '/admin_home/orders'
+            
+        },
+         {
+            text: "COMPLETEDORDERS",
+            icon: <BookmarkAddedIcon />,
+             path: '/admin_home/completedorders'
             
         },
         {
             text: "LOGOUT",
             icon: <LogoutIcon />,
-             path: '/admin_login'
+             path: '/'
         }
             
     ];

@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { Button, ButtonGroup, Card, Table } from 'react-bootstrap';
+// import WasherServices from "../../../Services/Washer/WasherServices";
+import "../../Member/Washer/Pages/Washer.css";
 import axios from "axios";
+import { AddReview } from "./AddReview";
 
 
-export default class Home extends Component {
+
+
+
+
+export default class CustomerHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -39,7 +46,7 @@ export default class Home extends Component {
             <>
                 <Card className={"border border-dark bg-dark container"} >
                     <Card.Header style={{ color: 'white' }}>
-                       REVIEW N RATINGS
+                       REVIEW N RATINGS  
                     </Card.Header>
                     <Card.Body>
                         <Table striped bordered hover variant="dark">
@@ -74,7 +81,9 @@ export default class Home extends Component {
                     </Card.Body>
                 </Card>
 
-                 
+                <AddReview/>
+
+
 
             </>
 

@@ -15,6 +15,7 @@ import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from "react-router-dom";
 import ScreenSearchDesktopIcon from '@mui/icons-material/ScreenSearchDesktop';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 
 
 const drawerWidth = 240;
@@ -27,6 +28,12 @@ function MiniDrawer() {
             icon: <HomeIcon />,
             path: '/customer_home'
            
+        },
+        {
+            text: "SERVICES",
+             icon: <CleaningServicesIcon />,
+            path: '/customer_home/services'
+            
         },
          {
             text: "BOOKORDERS",
@@ -45,7 +52,7 @@ function MiniDrawer() {
         {
             text: "LOGOUT",
             icon: <LogoutIcon />,
-            path: '/login'
+            path: '/'
             
         },
     ];

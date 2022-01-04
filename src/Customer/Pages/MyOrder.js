@@ -1,32 +1,27 @@
-import React, { Component } from "react";
-import { Button, ButtonGroup, Card, Table } from 'react-bootstrap';
-// import WasherServices from "../../../Services/Washer/WasherServices";
-import "../../Washer/Pages/Washer.css";
+import React, { Component } from 'react'
+import { Card, Table } from 'react-bootstrap'
+import "../../Member/Washer/Pages/Washer.css"
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaTrash } from 'react-icons/fa';
 
+export class MyOrder extends Component {
 
-
-
-export default class Orders extends Component {
     constructor(props) {
-    super(props);
-    this.state = {
-        orders: []
+        super(props);
+        this.state = {
+            orders: []
 
-    };
-}
+        };
+    }
 
-componentDidMount() {
-    this.getallorders();
-}
+    componentDidMount() {
+        this.getallorders();
+    }
 
-getallorders() {
+    getallorders() {
 
-    axios
-        .get(
-            "http://localhost:8082/order/allorders", {
+        axios
+            .get(
+                "http://localhost:8082/order/allorders", {
                 method: "GET",
                 headers: {
 
@@ -34,20 +29,19 @@ getallorders() {
                     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
                 }
             })
-        .then((response) => response.data)
-        .then((data) => {
-            this.setState({
-                orders: data
+            .then((response) => response.data)
+            .then((data) => {
+                this.setState({
+                    orders: data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+
             });
-        })
-        .catch((error) => {
-            console.log(error);
-            
-        });
-}
+    }
 
     render() {
-
         return (
             <>
                 <Card className={"border border-dark bg-dark container"} >
@@ -58,7 +52,6 @@ getallorders() {
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr align="center">
-                                   
                                     <th>Customer Name</th>
                                     <th>Address</th>
                                     <th>Car Name</th>
@@ -69,8 +62,6 @@ getallorders() {
                                     <th>Status </th>
                                     <th>Assigned Washer</th>
                                     <th>orderId</th>
-                                    
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,11 +91,9 @@ getallorders() {
                         </Table>
                     </Card.Body>
                 </Card>
-
             </>
-
-        );
-
+        )
     }
 }
 
+export default MyOrder

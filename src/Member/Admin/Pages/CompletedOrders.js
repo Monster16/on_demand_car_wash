@@ -3,13 +3,12 @@ import { Button, ButtonGroup, Card, Table } from 'react-bootstrap';
 // import WasherServices from "../../../Services/Washer/WasherServices";
 import "../../Washer/Pages/Washer.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { FaTrash } from 'react-icons/fa';
 
 
 
 
-export default class Orders extends Component {
+
+export default class CompletedOrders extends Component {
     constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +25,7 @@ getallorders() {
 
     axios
         .get(
-            "http://localhost:8082/order/allorders", {
+            "http://localhost:8082/findOrderByStatus/{status}", {
                 method: "GET",
                 headers: {
 
@@ -76,7 +75,7 @@ getallorders() {
                             <tbody>
                                 {this.state.orders.length === 0 ?
                                     <tr align="center">
-                                        <td colSpan={9}>No Order Available</td>
+                                        <td colSpan={10}>No Completed Available</td>
                                     </tr> :
                                     this.state.orders.map((order) => (
                                         <tr key={order.orderId}>

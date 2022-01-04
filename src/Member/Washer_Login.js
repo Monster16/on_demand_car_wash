@@ -1,28 +1,44 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
 
 function Washer_Login() {
   const [loginData, setLoginData] = useState({ wEmail: "", wPassword: "" });
+
+  let history = useHistory()
+  const [loggedIn, setloggedIn] = useState(false);
 
   function changeLogInData(e) {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   }
   function onLogIn() {
+    console.log(loginData)
     fetch("http://localhost:8003/washer/auth", {
       method: "POST",
       headers: {
-        "content-type": "application/json",
+        "content-type": "application/json"
       },
       body: JSON.stringify(loginData),
     })
-      .then((response) => response.json())
-      .then((response) => {
-        alert("You're loggedIn  Successfully");
+      .then(response => {
+        console.log(response)
+        if (response.status != 200)
+          return (Promise.reject(response.text))
+        return (response.json())
       })
-      .catch((err) => {
-        alert("Invalid Username or password..!!!!");
+      .then(response => {
+        alert("You're loggedIn  Successfully")
+        setloggedIn(true)
+      })
+      .catch(err => {
+        alert("Invalid Username or password..")
       });
+
+
   }
+  if (loggedIn) {
+    history.push("/washer_home")
+  }
+
   return (
     <section className="vh-101 gradient-custom">
       <div className="container py-5 h-100">
@@ -37,18 +53,22 @@ function Washer_Login() {
                   <p className="text-white-50 mb-5" >Please enter your Email and password!</p>
 
                   <div className="form-outline form-white mb-4">
-                    <input type="email" id="typeEmailX" className="form-control form-control-lg" placeholder='Enter Your Email' />
+                    <input type="email" id="typeEmailX" className="form-control form-control-lg" placeholder='Enter Your Email'
+                    name='wEmail'
+                    onChange={changeLogInData}/>
                     <label className="form-label" htmlFor="typeEmailX"></label>
                   </div>
 
                   <div className="form-outline form-white mb-4">
-                    <input type="password" id="typePasswordX" className="form-control form-control-lg" placeholder='Enter Your Pasword' />
+                    <input type="password" id="typePasswordX" className="form-control form-control-lg" placeholder='Enter Your Pasword'
+                    name='wPassword'
+                    onChange={changeLogInData}/>
                     <label className="form-label" htmlFor="typePasswordX"></label>
                   </div>
 
 
 
-                  <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                  <button className="btn btn-outline-light btn-lg px-5" type="submit" onClick={onLogIn} >Login</button>
                   <div className="divider d-flex align-items-center my-4">
                     <p className="mb-5 pb-lg-2 text-white">
                       Don't have an account?{" "}
@@ -69,5 +89,6 @@ function Washer_Login() {
     </section>
   )
 }
+
 
 export default Washer_Login

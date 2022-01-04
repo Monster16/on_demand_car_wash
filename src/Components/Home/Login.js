@@ -1,33 +1,43 @@
-import React, { Component } from 'react'
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import axios from 'axios';
 
-export class Login extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
+function Login() {
+  const [loginData, setLoginData] = useState({ cEmail: "", cPassword: "" });
+   
+let history=useHistory()
+const [loggedIn,setloggedIn]=useState(false);
+
+  function changeLogInData(e) {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  }
+  function onLogIn() {
+    console.log(loginData)
+    fetch("http://localhost:8080/customer/auth", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(loginData),
+    })
+    .then(response=> {console.log(response)
+      if(response.status!=200)
+      return(Promise.reject(response.text))
+      return(response.json())})
+    .then(response=>{
+        alert("You're loggedIn  Successfully")
+        setloggedIn(true)
+    })
+    .catch(err=>{
+        alert("Invalid Username or password..")
+    });
     
 
-    const data = {
-      cEmail: this.cEmail,
-      cPassword: this.cPassword
-    }
-
-    axios.post("http://localhost:8080/customer/auth", data)
-      .then(res => {
-        console.log(res)
-        this.props.history.push(`/customer_home`);
-        window.location.reload()
-            
-          
-            
-      })
-      .catch(err => {
-        alert('Your userID or password is Incorrect')
-        console.log(err)
-
-      })
   }
-  render() {
+  if(loggedIn)
+  {
+    history.push("/Customer_home")
+  }
     return (
       <section className="vh-101 gradient-custom">
         <div className="container py-5 h-100">
@@ -47,6 +57,8 @@ export class Login extends Component {
                         id="form1Example13"
                         className="form-control form-control-lg"
                         placeholder="Enter Your Email"
+                        name="cEmail"
+                        onChange={changeLogInData}
                         // onChange={changeLogInData}
                       />
                       <label className="form-label" for="typeEmailX"></label>
@@ -55,10 +67,11 @@ export class Login extends Component {
                     <div className="form-outline form-white mb-4">
                       <input
                         type="password"
+                         name="cPassword"
                         id="form1Example23"
                         className="form-control form-control-lg"
                         placeholder="Enter Your Password"
-                        // onChange={changeLogInData}
+                        onChange={changeLogInData}
                       />
                       <label className="form-label" for="typePasswordX"></label>
                     </div>
@@ -66,7 +79,7 @@ export class Login extends Component {
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg btn-block"
-                      onClick={this.handleSubmit}
+                      onClick={onLogIn}
                       // onSubmit={this.handleSubmit}
                     >
                       Sign in
@@ -90,7 +103,7 @@ export class Login extends Component {
     );
   }
 
-}
+
 export default Login
 
 {/* 

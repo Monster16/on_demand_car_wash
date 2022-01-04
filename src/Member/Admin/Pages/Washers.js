@@ -26,15 +26,7 @@ export default class Washers extends Component {
 
         axios
             .get(
-                "http://localhost:8000/admin/getallwasher", {
-                method: "GET",
-                headers: {
-                    "content-type": "application/json",
-                    "accept":"application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-                }
-            })
+                "http://localhost:8003/washer/allwashers")
             .then((response) => response.data)
             .then((data) => {
                 this.setState({
@@ -46,10 +38,6 @@ export default class Washers extends Component {
 
             });
     }
-
-
-
-
 
     render() {
 
@@ -63,11 +51,12 @@ export default class Washers extends Component {
                         <Table striped bordered hover variant="dark">
                             <thead>
                                 <tr align="center">
-                                    <th>WasherId</th>
+                                  
                                     <th>Washer Name</th>
                                     <th>Email</th>
                                     <th>Phone Number</th>
                                     <th>Address</th>
+                                      
 
 
                                 </tr>
@@ -78,18 +67,13 @@ export default class Washers extends Component {
                                         <td colSpan={5}>No Washer Available</td>
                                     </tr> :
                                     this.state.washers.map((washer) => (
-                                        <tr key={washer.id}>
+                                        <tr key={washer._id}>
                                             <td>{washer.wName}</td>
                                             <td>{washer.wEmail}</td>
                                             <td>{washer.wPhone}</td>
                                             <td>{washer.wAddress}</td>
-
-
-
                                         </tr>
-
                                     )
-
                                     )}
                             </tbody>
                         </Table>

@@ -13,10 +13,10 @@ function Washer() {
             <Dashboard />
 
             <Switch>
-                    <Route  path="/washer_home" component={Home} />
-                    <Route  path="/washer_home/findorders" component={FindOrders} />
-                    <Route  path="/washer_home/myorders" component={MyOrders} />
-                    <Route  path="/washer_login" component={Washer_Login} />
+                    <Route exact path="/washer_home" component={Home} />
+                    <Route exact path="/washer_home/findorders" component={FindOrders} />d
+                    <Route exact path="/washer_home/myorders" component={MyOrders} />
+                    <Route exact path="/washer_login" component={Washer_Login} />
                    
                    
                     </Switch>

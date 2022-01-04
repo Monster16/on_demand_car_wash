@@ -77,7 +77,8 @@ register(e){
         })
         .then(response=> response.json())
         .then(response=>{
-            alert("You have been Registered Successfully")
+         
+          this.props.history.push("/login");
             
         })
         
@@ -105,24 +106,7 @@ handleChange(changeObject){
                     </p>
 
                     <form className="mx-1 mx-md-2">
-                      <div className="d-flex flex-row align-items-center mb-4">
-                        <i className="fas fa-user fa-lg me-3 fa-fw"></i>
-                        <div className="form-outline flex-fill mb-0">
-                          <input
-                           onChange={(e)=>this.handleChange({
-                            cId: e.target.value
-                           })}
-                            type="number"
-                            id="form3Example1c"
-                            className="form-control"
-                            placeholder="Your ID"
-                          />
-                          <label className="form-label" for="form3Example1c">
-                            
-                          </label>
-                         
-                        </div>
-                      </div>
+                      
                       <div className="d-flex flex-row align-items-center mb-4">
                         <i className="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div className="form-outline flex-fill mb-0">
@@ -131,7 +115,7 @@ handleChange(changeObject){
                               cName: e.target.value
                              })}
                             type="text"
-                            id="form3Example1c"
+                          
                             className="form-control"
                             placeholder="Enter Your Name"
                           />
@@ -147,7 +131,7 @@ handleChange(changeObject){
                               cPhone: e.target.value
                              })}
                             type="tel"
-                            id="form3Example1c"
+                           
                             className="form-control"
                             placeholder="Enter Your Phone Number"
                           />
@@ -210,21 +194,6 @@ handleChange(changeObject){
                           </label>
                           <p style={{color:'red'}}>{this.state.cPasswordError}</p>
                         </div>
-                      </div>
-
-                     
-
-                      <div className="form-check d-flex justify-content-center mb-5">
-                        <input
-                          className="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="form2Example3c"
-                        />
-                        <label className="form-check-label" for="form2Example3">
-                          I agree all statements in{" "}
-                          <a href="#!">Terms of service</a>
-                        </label>
                       </div>
 
                       <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

@@ -1,47 +1,46 @@
-import React, { Component } from 'react'
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
-export class Admin_Login extends Component {
 
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-      aEmail: "",
-      aPassword: ""
-    };
+
+function Admin_Login() {
+  const [loginData, setLoginData] = useState({ aEmail: "", aPassword: "" });
+   
+let history=useHistory()
+const [loggedIn,setloggedIn]=useState(false);
+
+  function changeLogInData(e) {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  }
+  function onLogIn() {
+    console.log(loginData)
+    fetch("http://localhost:8000/admin/auth", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(loginData),
+    })
+    .then(response=> {console.log(response)
+      if(response.status!==200)
+      return(Promise.reject(response.text))
+      return(response.json())})
+    .then(response=>{
+        alert("You're loggedIn  Successfully")
+        setloggedIn(true)
+    })
+    .catch(err=>{
+        alert("Invalid Username or password..")
+    });
     
-    this.handleChange = this.handleChange.bind();
-    this.login = this.login.bind();
+
+  }
+  if(loggedIn)
+  {
+    history.push("/admin_home")
   }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  login = () => {
-    let valid_data = true;
-
-
-    if (this.state.aEmail === "") {
-      this.state.aEmail_error = "Required!";
-      valid_data = false;
-    }
-
-    if (this.state.aPassword === "") {
-      this.state.aPassword_error = "Required!";
-      valid_data = false;
-    }
-    this.setState({
-      update: true
-    });
-    if (valid_data) {
-      //login
-    }
-  };
   
-  render() {
     return (
       <div>
         <section className="vh-101 gradient-custom">
@@ -70,9 +69,9 @@ export class Admin_Login extends Component {
                           id="typeEmailX"
                           className="form-control form-control-lg"
                           placeholder="Enter Your Email"
-                       
-                          onChange={this.handleChange}
-
+                          name='aEmail'
+                          onChange={changeLogInData}
+                         
                         />
                        
                         <label className="form-label" htmlFor="typeEmailX"></label>
@@ -84,8 +83,9 @@ export class Admin_Login extends Component {
                           id="typePasswordX"
                           className="form-control form-control-lg"
                           placeholder="Enter Your Pasword"
+                          name='aPassword'
+                          onChange={changeLogInData}
                          
-                          onChange={this.handleChange}
                         />
                         
                         <label className="form-label" htmlFor="typePasswordX"></label>
@@ -94,7 +94,7 @@ export class Admin_Login extends Component {
                       <button
                         className="btn btn-outline-light btn-lg px-5"
                         type="submit"
-                        onClick={this.login}
+                        onClick={onLogIn}
                       >
                         Login
                       </button>
@@ -109,7 +109,12 @@ export class Admin_Login extends Component {
       </div>
     )
   }
-}
+
 
 export default Admin_Login
+
+
+
+
+
 

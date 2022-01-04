@@ -1,9 +1,9 @@
 import React from "react";
-import "./Services.css";
+import "../../Components/Home/Services.css";
 
 function ContServices() {
   return (
-    <div className="main">
+    <div className="container">
       <div class="card-group">
         <div class="card">
           <img
